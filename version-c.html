@@ -1,0 +1,476 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Ensina-me — португальский и испанский в Москве</title>
+<meta name="description" content="Единственный в Москве языковой центр только португальского и испанского. Маленькие группы, преподаватели-носители, разговорный клуб по субботам. Новослободская, 11.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant:ital,wght@0,500;0,600;0,700;1,500;1,600&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+  /* ============================================================
+     ПАЛИТРА — Вариант A «Азулежу»
+     Меняется только этот блок; разметка и структура идентичны B и C.
+     ============================================================ */
+    /*PALETTE-START*/
+  :root{
+    --bg:#132621;          /* глубокая хвоя */
+    --surface:#1B342C;     /* карточки */
+    --surface-2:#204035;   /* вторичный фон */
+    --ink:#EAF1EC;         /* светлый текст */
+    --muted:#93A79C;       /* приглушённый */
+    --line:rgba(234,241,236,.13);
+
+    --primary:#F2B33D;     /* шафран, яркий акцент */
+    --primary-2:#7FB09A;   /* шалфей */
+    --accent:#7FB09A;      /* шалфей */
+    --gold:#F2B33D;        /* шафран */
+
+    --panel-bg:#0E1C18;    /* глубже фона: хиро, отзывы */
+    --panel-text:#EAF1EC;
+    --panel-muted:rgba(234,241,236,.72);
+    --panel-line:rgba(234,241,236,.12);
+    --hero-a:rgba(14,28,24,.82);
+    --hero-b:rgba(9,19,16,.95);
+
+    --cta-bg:#F2B33D;      --cta-text:#132621;   --cta-hover:#e0a52c;
+    --nav-bg:rgba(19,38,33,.9);
+    --vname:"Вариант C · Тёмный минимал";
+
+    --azulejo:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='84' height='84' viewBox='0 0 84 84'%3E%3Cg fill='none' stroke='%23F2B33D' stroke-width='1.3'%3E%3Ccircle cx='0' cy='0' r='30'/%3E%3Ccircle cx='84' cy='0' r='30'/%3E%3Ccircle cx='0' cy='84' r='30'/%3E%3Ccircle cx='84' cy='84' r='30'/%3E%3Ccircle cx='42' cy='42' r='30'/%3E%3Crect x='30' y='30' width='24' height='24' transform='rotate(45 42 42)'/%3E%3Ccircle cx='42' cy='42' r='4.5' fill='%23F2B33D' stroke='none'/%3E%3C/g%3E%3C/svg%3E");
+    --azulejo-panel:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='84' height='84' viewBox='0 0 84 84'%3E%3Cg fill='none' stroke='%23F2B33D' stroke-width='1.1'%3E%3Ccircle cx='0' cy='0' r='30'/%3E%3Ccircle cx='84' cy='0' r='30'/%3E%3Ccircle cx='0' cy='84' r='30'/%3E%3Ccircle cx='84' cy='84' r='30'/%3E%3Ccircle cx='42' cy='42' r='30'/%3E%3Crect x='30' y='30' width='24' height='24' transform='rotate(45 42 42)'/%3E%3Ccircle cx='42' cy='42' r='4' fill='%23F2B33D' stroke='none'/%3E%3C/g%3E%3C/svg%3E");
+  }
+  /*PALETTE-END*/
+
+  /* ============================================================
+     БАЗА (общая для всех вариантов, только токены)
+     ============================================================ */
+  *{box-sizing:border-box;margin:0;padding:0}
+  html{scroll-behavior:smooth;scroll-padding-top:78px}
+  body{font-family:'Manrope',system-ui,sans-serif;background:var(--bg);color:var(--ink);font-size:1.05rem;line-height:1.65;-webkit-font-smoothing:antialiased;overflow-x:hidden}
+  h1,h2,h3,h4{font-family:'Cormorant',Georgia,serif;font-weight:600;line-height:1.06;letter-spacing:-.01em}
+  h1{font-size:clamp(2.7rem,6vw,4.8rem)}
+  h2{font-size:clamp(2rem,4.2vw,3.1rem)}
+  h3{font-size:clamp(1.35rem,2.4vw,1.72rem);line-height:1.14}
+  p{max-width:62ch}
+  a{color:inherit;text-decoration:none}
+  img{max-width:100%;display:block}
+  .wrap{width:min(1160px,92vw);margin-inline:auto}
+  section{position:relative}
+
+  .btn{display:inline-flex;align-items:center;gap:.55em;font-weight:600;font-size:1rem;padding:.85em 1.5em;border-radius:3px;border:1.5px solid transparent;cursor:pointer;transition:transform .15s ease,background .2s,color .2s}
+  .btn:hover{transform:translateY(-2px)}
+  .btn-primary{background:var(--cta-bg);color:var(--cta-text)}
+  .btn-primary:hover{background:var(--cta-hover)}
+  .btn-ghost{border-color:currentColor;background:transparent}
+  .btn-ghost.on-dark{color:var(--panel-text)}
+  .btn-ghost.on-dark:hover{background:rgba(255,255,255,.08)}
+  .btn-ghost.on-light:hover{background:rgba(0,0,0,.05)}
+
+  /* версия-бейдж */
+  .vbadge{position:fixed;right:14px;bottom:14px;z-index:80;background:var(--panel-bg);color:var(--panel-text);font-size:.76rem;font-weight:700;letter-spacing:.02em;padding:.5em .9em;border-radius:100px;box-shadow:0 8px 24px -10px rgba(0,0,0,.5);opacity:.92}
+  .vbadge::before{content:var(--vname)}
+
+  /* Навигация */
+  header.nav{position:sticky;top:0;z-index:50;background:var(--nav-bg);backdrop-filter:blur(10px);border-bottom:1px solid var(--line)}
+  .nav-inner{display:flex;align-items:center;justify-content:space-between;height:66px}
+  .brand{display:flex;align-items:center;gap:.6rem;font-family:'Cormorant',serif;font-size:1.7rem;font-weight:700;color:var(--ink)}
+  .brand .mark{width:30px;height:30px;flex:none;border-radius:4px;background:var(--panel-bg) var(--azulejo-panel);background-size:30px;box-shadow:inset 0 0 0 1px var(--line)}
+  .brand small{display:block;font-family:'Manrope',sans-serif;font-size:.6rem;font-weight:700;color:var(--primary);letter-spacing:.16em;text-transform:uppercase;line-height:1;margin-top:.2rem}
+  nav.links{display:flex;align-items:center;gap:1.7rem}
+  nav.links a{font-size:.95rem;font-weight:500;color:var(--ink);opacity:.82;transition:opacity .2s}
+  nav.links a:hover{opacity:1;text-decoration:underline;text-decoration-color:var(--gold);text-underline-offset:5px;text-decoration-thickness:2px}
+  nav.links .btn{padding:.55em 1.15em}
+  .burger{display:none;background:none;border:1.5px solid var(--line);border-radius:3px;width:42px;height:38px;cursor:pointer;flex-direction:column;gap:4px;align-items:center;justify-content:center}
+  .burger span{width:19px;height:2px;background:var(--ink);display:block}
+
+  /* Хиро */
+  .hero{background:linear-gradient(180deg,var(--hero-a),var(--hero-b)),var(--panel-bg) var(--azulejo-panel);background-size:auto,168px;color:var(--panel-text);padding:clamp(3.5rem,8vw,6.5rem) 0 0;overflow:hidden}
+  .hero-flag{display:inline-flex;align-items:center;gap:.6rem;font-size:.82rem;font-weight:600;background:rgba(255,255,255,.09);border:1px solid var(--panel-line);padding:.5em 1em;border-radius:100px;margin-bottom:1.7rem}
+  .hero-flag b{color:var(--gold);font-weight:800}
+  .hero h1{max-width:17ch;margin-bottom:1.4rem}
+  .hero h1 em{font-style:italic;color:var(--gold)}
+  .hero .lede{font-size:1.2rem;max-width:54ch;color:var(--panel-muted);margin-bottom:2.2rem;line-height:1.55}
+  .hero-cta{display:flex;flex-wrap:wrap;gap:.9rem;margin-bottom:3rem}
+  .hero-facts{display:flex;flex-wrap:wrap;gap:2.4rem;padding:1.6rem 0 3.4rem;border-top:1px solid var(--panel-line)}
+  .fact .k{font-family:'Cormorant',serif;font-size:2.3rem;font-weight:700;line-height:1}
+  .fact .v{font-size:.9rem;color:var(--panel-muted);margin-top:.25rem}
+  .tile-strip{height:26px;background:var(--panel-bg) var(--azulejo);background-size:26px}
+
+  /* Секции */
+  .sec{padding:clamp(3.8rem,7vw,6rem) 0}
+  .eyebrow{display:inline-flex;align-items:center;gap:.6rem;font-size:.9rem;font-weight:600;color:var(--primary);margin-bottom:.9rem}
+  .eyebrow::before{content:"";width:20px;height:20px;background:var(--azulejo);background-size:20px;border-radius:3px;flex:none;box-shadow:inset 0 0 0 1px var(--line)}
+  .sec-head{max-width:60ch;margin-bottom:2.6rem}
+  .sec-head p{margin-top:.9rem;color:var(--muted)}
+
+  /* Языки и форматы */
+  .langtabs{display:inline-flex;background:var(--surface-2);border:1px solid var(--line);border-radius:4px;padding:4px;margin-bottom:2rem;gap:4px}
+  .langtabs button{font-family:inherit;font-size:.98rem;font-weight:600;color:var(--ink);background:none;border:none;cursor:pointer;padding:.55em 1.3em;border-radius:2px;transition:.2s}
+  .langtabs button[aria-selected="true"]{background:var(--primary);color:#fff}
+  .lang-grid{display:grid;grid-template-columns:1.1fr .9fr;gap:2.4rem;align-items:start}
+  .sched{display:flex;flex-direction:column;gap:.7rem}
+  .sched-row{display:grid;grid-template-columns:1fr auto;gap:1rem;align-items:center;background:var(--surface);border:1px solid var(--line);border-left:4px solid var(--primary);padding:1.05rem 1.3rem;border-radius:3px}
+  .sched-row.native{border-left-color:var(--accent)}
+  .sched-row h4{font-family:'Manrope',sans-serif;font-size:1.05rem;font-weight:700;margin-bottom:.15rem}
+  .sched-row .meta{font-size:.88rem;color:var(--muted)}
+  .sched-row .lvl{font-size:.78rem;font-weight:700;color:var(--primary);white-space:nowrap;background:color-mix(in srgb,var(--primary) 12%,transparent);padding:.35em .7em;border-radius:100px}
+  .sched-row.native .lvl{color:var(--accent);background:color-mix(in srgb,var(--accent) 14%,transparent)}
+  .price-note{margin-top:1rem;font-size:.9rem;color:var(--muted)}
+  .price-note b{color:var(--ink)}
+  .formats{display:grid;gap:1rem}
+  .fmt{background:var(--surface-2);border:1px solid var(--line);padding:1.1rem 1.25rem;border-radius:3px}
+  .fmt h4{font-family:'Manrope',sans-serif;font-size:1rem;font-weight:700}
+  .fmt p{font-size:.9rem;color:var(--muted);margin-top:.2rem}
+  .fmt.accent{background:var(--panel-bg) var(--azulejo-panel);background-size:60px;color:var(--panel-text);position:relative}
+  .fmt.accent::after{content:"";position:absolute;inset:0;background:var(--hero-b)}
+  .fmt.accent h4,.fmt.accent p{position:relative;z-index:1}
+  .fmt.accent p{color:var(--panel-muted)}
+
+  /* Преподаватели */
+  .teachers{display:grid;grid-template-columns:repeat(3,1fr);gap:1.6rem}
+  .teacher{background:var(--surface);border:1px solid var(--line);border-radius:5px;overflow:hidden;display:flex;flex-direction:column}
+  .teacher .photo{aspect-ratio:4/3;display:flex;align-items:flex-end;padding:1.1rem;position:relative;color:#fff}
+  .teacher.pt .photo{background:linear-gradient(140deg,var(--primary),var(--primary-2))}
+  .teacher.es .photo{background:linear-gradient(140deg,var(--accent),color-mix(in srgb,var(--accent) 55%,#000))}
+  .teacher.br .photo{background:linear-gradient(140deg,var(--gold),var(--accent))}
+  .teacher .photo::before{content:"";position:absolute;inset:0;background:var(--azulejo-panel);background-size:66px;opacity:.16}
+  .teacher .photo .who{position:relative;z-index:1}
+  .teacher .photo .lang{font-size:.74rem;font-weight:700;letter-spacing:.05em;text-transform:uppercase;opacity:.9}
+  .teacher .photo .name{font-family:'Cormorant',serif;font-size:2.3rem;font-weight:700;line-height:1}
+  .teacher .body{padding:1.3rem 1.35rem 1.5rem}
+  .teacher .role{font-size:.8rem;font-weight:700;color:var(--primary);margin-bottom:.5rem}
+  .teacher.es .role{color:var(--accent)}
+  .teacher.br .role{color:var(--gold)}
+  .teacher .body p{font-size:.94rem;color:var(--muted)}
+  .photo-note{position:absolute;top:.7rem;right:.7rem;z-index:1;font-size:.62rem;font-weight:600;background:rgba(0,0,0,.28);color:#fff;padding:.25em .55em;border-radius:100px;letter-spacing:.02em}
+
+  /* Отзывы */
+  .reviews{background:var(--panel-bg) var(--azulejo-panel);background-size:150px;color:var(--panel-text)}
+  .reviews::before{content:"";position:absolute;inset:0;background:linear-gradient(180deg,var(--hero-a),var(--hero-b))}
+  .reviews>.wrap{position:relative;z-index:1}
+  .reviews .eyebrow{color:var(--gold)}
+  .reviews .eyebrow::before{background:var(--azulejo-panel);background-size:20px;box-shadow:inset 0 0 0 1px var(--panel-line)}
+  .reviews .sec-head h2{color:var(--panel-text)}
+  .rev-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1.5rem}
+  .rev{background:rgba(255,255,255,.055);border:1px solid var(--panel-line);border-radius:5px;padding:1.7rem}
+  .rev.feature{grid-column:span 2;background:color-mix(in srgb,var(--gold) 12%,transparent);border-color:color-mix(in srgb,var(--gold) 40%,transparent)}
+  .stars{color:var(--gold);letter-spacing:.15em;font-size:.9rem;margin-bottom:.9rem}
+  .rev blockquote{font-family:'Cormorant',serif;font-size:1.42rem;line-height:1.32}
+  .rev.feature blockquote{font-size:1.66rem}
+  .rev .who{margin-top:1.2rem;font-size:.88rem;color:var(--panel-muted)}
+  .rev .who b{color:var(--panel-text);font-weight:700}
+  .rtp{display:inline-block;margin-top:.8rem;font-size:.74rem;font-weight:700;letter-spacing:.06em;color:var(--panel-bg);background:var(--gold);padding:.35em .7em;border-radius:3px}
+
+  /* Почему мы */
+  .atmo-grid{display:grid;grid-template-columns:repeat(6,1fr);grid-auto-rows:minmax(150px,auto);gap:1.2rem}
+  .card{border:1px solid var(--line);border-radius:5px;padding:1.5rem;display:flex;flex-direction:column;justify-content:flex-end;background:var(--surface)}
+  .card h3{margin-bottom:.4rem}
+  .card p{font-size:.94rem;color:var(--muted)}
+  .card .tag{font-size:.78rem;font-weight:700;letter-spacing:.04em;text-transform:uppercase;color:var(--primary);margin-bottom:.7rem}
+  .c-groups{grid-column:span 3;background:var(--surface-2)}
+  .c-shop{grid-column:span 3;background:linear-gradient(150deg,var(--primary),var(--panel-bg));color:#fff}
+  .c-shop .tag{color:var(--gold)}
+  .c-shop p{color:rgba(255,255,255,.82)}
+  .c-shop .pubs{display:flex;flex-wrap:wrap;gap:.5rem;margin-top:1rem}
+  .c-shop .pubs span{font-size:.8rem;font-weight:600;border:1px solid rgba(255,255,255,.32);padding:.3em .7em;border-radius:100px}
+  .c-coffee{grid-column:span 2}
+  .c-club{grid-column:span 2;background:var(--surface-2)}
+  .c-formats{grid-column:span 2}
+  .card .big{font-family:'Cormorant',serif;font-size:2.4rem;font-weight:700;line-height:1;color:var(--accent)}
+
+  /* Контакты + ИИ-слот */
+  .contact-grid{display:grid;grid-template-columns:.85fr 1.15fr;gap:2.6rem;align-items:start}
+  .contact-info dl{margin-top:1.5rem}
+  .contact-info dt{font-size:.78rem;font-weight:700;letter-spacing:.04em;text-transform:uppercase;color:var(--primary);margin-top:1.25rem}
+  .contact-info dd{font-size:1.1rem;font-weight:500;margin-top:.15rem}
+  .contact-info dd a:hover{text-decoration:underline;text-underline-offset:4px}
+  .hours-pill{display:inline-flex;align-items:center;gap:.5rem;background:var(--surface-2);border:1px solid var(--line);padding:.6em 1em;border-radius:100px;font-size:.9rem;font-weight:600}
+  .hours-pill .dot{width:9px;height:9px;border-radius:50%;background:#3fa46a;box-shadow:0 0 0 3px rgba(63,164,106,.2)}
+
+  .assistant{background:var(--surface);border:1.5px solid var(--primary);border-radius:6px;overflow:hidden;box-shadow:0 18px 40px -24px rgba(0,0,0,.45)}
+  .assistant-head{background:var(--panel-bg) var(--azulejo-panel);background-size:44px;color:var(--panel-text);padding:1.2rem 1.5rem;position:relative;display:flex;align-items:center;gap:.9rem}
+  .assistant-head::before{content:"";position:absolute;inset:0;background:var(--hero-b)}
+  .assistant-head>*{position:relative;z-index:1}
+  .assistant-head .av{width:40px;height:40px;border-radius:50%;background:var(--gold);color:var(--panel-bg);display:grid;place-items:center;font-family:'Cormorant',serif;font-size:1.5rem;font-weight:700;flex:none}
+  .assistant-head .t{font-weight:700;font-size:1.02rem}
+  .assistant-head .s{font-size:.82rem;color:var(--panel-muted)}
+  #ai-assistant-slot{min-height:300px;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;gap:.8rem;padding:2.5rem 2rem;background:repeating-linear-gradient(-45deg,transparent 0 12px,color-mix(in srgb,var(--primary) 4%,transparent) 12px 24px)}
+  #ai-assistant-slot .ph-icon{width:52px;height:52px;border-radius:12px;background:var(--surface-2);border:1px solid var(--line);display:grid;place-items:center;font-size:1.6rem}
+  #ai-assistant-slot .ph-t{font-weight:700}
+  #ai-assistant-slot .ph-d{font-size:.9rem;color:var(--muted);max-width:36ch}
+  #ai-assistant-slot code{font-size:.8rem;background:var(--surface-2);padding:.15em .5em;border-radius:3px;color:var(--primary)}
+  .assistant-foot{border-top:1px solid var(--line);padding:.9rem 1.5rem;font-size:.84rem;color:var(--muted);display:flex;align-items:center;gap:.5rem;flex-wrap:wrap}
+
+  /* Подвал */
+  footer{background:var(--panel-bg);color:var(--panel-muted);padding:3rem 0 2rem}
+  footer .foot-top{display:flex;justify-content:space-between;flex-wrap:wrap;gap:2rem;padding-bottom:2rem;border-bottom:1px solid var(--panel-line)}
+  footer .brand{color:var(--panel-text)}
+  footer .brand small{color:var(--primary-2)}
+  footer .brand .mark{box-shadow:inset 0 0 0 1px var(--panel-line)}
+  footer nav{display:flex;gap:1.5rem;flex-wrap:wrap}
+  footer nav a{font-size:.92rem;transition:color .2s}
+  footer nav a:hover{color:var(--gold)}
+  footer .foot-bot{padding-top:1.5rem;font-size:.82rem;display:flex;justify-content:space-between;flex-wrap:wrap;gap:1rem;opacity:.7}
+
+  .reveal{opacity:0;transform:translateY(22px);transition:opacity .7s ease,transform .7s ease}
+  .reveal.in{opacity:1;transform:none}
+  @media(prefers-reduced-motion:reduce){.reveal{opacity:1;transform:none;transition:none}.btn:hover{transform:none}}
+
+  @media(max-width:940px){
+    .lang-grid,.contact-grid{grid-template-columns:1fr}
+    .teachers{grid-template-columns:1fr;gap:1.2rem}
+    .teacher{flex-direction:row}
+    .teacher .photo{aspect-ratio:auto;width:40%;min-width:150px}
+    .rev-grid{grid-template-columns:1fr 1fr}
+    .rev.feature{grid-column:span 2}
+    .atmo-grid{grid-template-columns:repeat(2,1fr)}
+    .c-groups,.c-shop,.c-coffee,.c-club,.c-formats{grid-column:span 2}
+  }
+  @media(max-width:720px){
+    nav.links{position:fixed;inset:66px 0 auto 0;flex-direction:column;align-items:stretch;background:var(--bg);border-bottom:1px solid var(--line);padding:1rem 6vw 1.5rem;gap:.4rem;transform:translateY(-120%);transition:transform .3s ease;box-shadow:0 20px 30px -20px rgba(0,0,0,.3)}
+    nav.links.open{transform:none}
+    nav.links a{padding:.7rem 0;border-bottom:1px solid var(--line)}
+    nav.links .btn{margin-top:.6rem;justify-content:center}
+    .burger{display:flex}
+    .teacher{flex-direction:column}
+    .teacher .photo{width:100%;aspect-ratio:16/9}
+    .rev-grid{grid-template-columns:1fr}
+    .rev.feature{grid-column:span 1}
+    .hero-facts{gap:1.5rem 2rem}
+    p{max-width:none}
+  }
+</style>
+</head>
+<body>
+
+<span class="vbadge" aria-hidden="true"></span>
+
+<!-- НАВИГАЦИЯ -->
+<header class="nav">
+  <div class="wrap nav-inner">
+    <a href="#home" class="brand"><span class="mark"></span><span>Ensina&#8209;me<small>português · español</small></span></a>
+    <button class="burger" id="burger" aria-label="Меню" aria-expanded="false"><span></span><span></span><span></span></button>
+    <nav class="links" id="menu">
+      <a href="#languages">Языки и наборы</a>
+      <a href="#teachers">Преподаватели</a>
+      <a href="#reviews">Отзывы</a>
+      <a href="#why">Почему мы</a>
+      <a href="#contact" class="btn btn-primary">Пробное занятие</a>
+    </nav>
+  </div>
+</header>
+
+<!-- ХИРО -->
+<section class="hero" id="home">
+  <div class="wrap">
+    <span class="hero-flag">🇵🇹 🇧🇷 🇪🇸 &nbsp;<b>Единственный</b> центр в Москве только по этим языкам</span>
+    <h1>Португальский и испанский, <em>глубоко и по-домашнему</em></h1>
+    <p class="lede">Мы не распыляемся на десяток языков. В Ensina&#8209;me учат только португальскому и испанскому, поэтому подбираем лучших преподавателей и носителей именно в этой паре: от первого «olá» до перевода экскурсий и интервью на португальском телевидении.</p>
+    <div class="hero-cta">
+      <a href="#contact" class="btn btn-primary">Записаться на бесплатное занятие</a>
+      <a href="#languages" class="btn btn-ghost on-dark">Смотреть наборы</a>
+    </div>
+    <div class="hero-facts">
+      <div class="fact"><div class="k">2</div><div class="v">языка, оба с носителями</div></div>
+      <div class="fact"><div class="k">до 6</div><div class="v">человек в группе</div></div>
+      <div class="fact"><div class="k">10:00&#8211;21:30</div><div class="v">ежедневно</div></div>
+      <div class="fact"><div class="k">Новослободская, 11</div><div class="v">в двух шагах от метро</div></div>
+    </div>
+  </div>
+</section>
+<div class="tile-strip" aria-hidden="true"></div>
+
+<!-- ЯЗЫКИ И ФОРМАТЫ -->
+<section class="sec" id="languages">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <span class="eyebrow">Языки и наборы</span>
+      <h2>Актуальные группы этого сезона</h2>
+      <p>Небольшие группы стартуют регулярно. Переключите язык, чтобы увидеть, куда ещё можно присоединиться прямо сейчас.</p>
+    </div>
+    <div class="langtabs reveal" role="tablist" aria-label="Выбор языка">
+      <button role="tab" aria-selected="true" data-lang="pt">Португальский</button>
+      <button role="tab" aria-selected="false" data-lang="es">Испанский</button>
+    </div>
+    <div class="lang-grid">
+      <div class="reveal">
+        <div class="sched" id="sched"></div>
+        <p class="price-note">Групповое занятие 90 минут: <b>от 900 ₽</b>. Абонемент на 36 занятий: <b>32 400 ₽</b>. Есть оплата помесячно, за курс и за полгода. Точную стоимость под ваш формат подскажет администратор.</p>
+      </div>
+      <div class="formats reveal">
+        <div class="fmt accent"><h4>Мини-группа, 2–3 человека</h4><p>Наш любимый формат. Все успевают говорить, преподаватель помнит, кто на чём споткнулся на прошлой неделе.</p></div>
+        <div class="fmt"><h4>Группа, 4–6 человек</h4><p>Классический набор с нуля и по уровням, живой темп и партнёры по диалогам.</p></div>
+        <div class="fmt"><h4>Индивидуально</h4><p>Программа под вашу цель: работа, переезд, экзамен или путешествие.</p></div>
+        <div class="fmt"><h4>Дистанционно</h4><p>Те же преподаватели онлайн по Skype, если вы не в Москве или в разъездах.</p></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ПРЕПОДАВАТЕЛИ -->
+<section class="sec" id="teachers" style="background:var(--surface-2)">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <span class="eyebrow">Кто вас учит</span>
+      <h2>Преподаватели, которых студенты вспоминают как друзей</h2>
+      <p>В отзывах их зовут по именам и с теплотой. Это не безликая «команда экспертов», а живые люди со своим стилем, двое из них носители.</p>
+    </div>
+    <div class="teachers">
+      <article class="teacher pt reveal">
+        <div class="photo"><span class="photo-note">фото центра</span><div class="who"><div class="lang">Португальский</div><div class="name">Дерио</div></div></div>
+        <div class="body"><div class="role">Носитель · директор центра</div><p>Живёт в России около 20 лет, окончил МГЛУ. Ведёт от первого «olá» до свободной речи, спокойно и по делу, любит разбирать разницу между европейским и бразильским португальским.</p></div>
+      </article>
+      <article class="teacher es reveal">
+        <div class="photo"><span class="photo-note">фото центра</span><div class="who"><div class="lang">Испанский</div><div class="name">Никсар</div></div></div>
+        <div class="body"><div class="role">Преподаватель испанского</div><p>Объясняет легко и находит подход к каждому. С ним быстро пропадает страх говорить: много практики, реальные ситуации и та самая южная лёгкость.</p></div>
+      </article>
+      <article class="teacher br reveal">
+        <div class="photo"><span class="photo-note">фото центра</span><div class="who"><div class="lang">Бразильский</div><div class="name">Рафаэл</div></div></div>
+        <div class="body"><div class="role">Носитель · Бразилия</div><p>Родом из Итажубы, штат Минас-Жерайс. Ведёт бразильский вариант и разговорную практику, приносит живой язык, музыку и культуру прямо на занятие.</p></div>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- ОТЗЫВЫ -->
+<section class="sec reviews" id="reviews">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <span class="eyebrow">Отзывы студентов</span>
+      <h2>От первого урока до эфира на RTP</h2>
+    </div>
+    <div class="rev-grid">
+      <div class="rev feature reveal">
+        <div class="stars">★★★★★</div>
+        <blockquote>Начинала португальский с полного нуля с Дерио. Через два года уже свободно переводила экскурсии в Португалии, а потом дала интервью местному телевидению на португальском.</blockquote>
+        <div class="who"><b>Ирина Мурадова</b>, португальский<span class="rtp">интервью на RTP</span></div>
+      </div>
+      <div class="rev reveal">
+        <div class="stars">★★★★★</div>
+        <blockquote>Учусь больше года: португальский с Дерио, испанский с Никсаром. Оба приветливые, за несколько занятий становятся друзьями, материалы живые и современные.</blockquote>
+        <div class="who"><b>Людмила Лаврухина</b>, португальский и испанский</div>
+      </div>
+      <div class="rev reveal">
+        <div class="stars">★★★★★</div>
+        <blockquote>Маленькая группа, все свои, к концу семестра уже болтаем на кофе-паузах. Разговорный клуб с носителем по субботам добавил уверенности.</blockquote>
+        <div class="who"><b>Студент центра</b>, испанский</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ПОЧЕМУ МЫ -->
+<section class="sec" id="why">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <span class="eyebrow">Почему мы</span>
+      <h2>По-домашнему, а не по-корпоративному</h2>
+      <p>Маленькие группы, чашка кофе и книга на португальском из своей библиотеки. И редкая для Москвы деталь: собственный магазин учебной литературы, официальный дилер португальских и бразильских издательств.</p>
+    </div>
+    <div class="atmo-grid">
+      <div class="card c-groups reveal"><span class="tag">Маленькие группы</span><h3>До 6 человек, и каждого слышно</h3><p>Мини-группы по 2–3 и группы по 4–6. Преподаватель помнит ваш прогресс лично, говорят все.</p></div>
+      <div class="card c-shop reveal"><span class="tag">Своя литература</span><h3>Магазин учебников из Португалии и Бразилии</h3><p>Официальный дилер ведущих издательств. Оригинальные пособия, которые сложно достать где-то ещё.</p><div class="pubs"><span>Lidel</span><span>Porto Editora</span><span>EPU</span></div></div>
+      <div class="card c-coffee reveal"><span class="tag">Библиотека</span><h3>Кофе и книги на португальском</h3><p>Можно остаться после урока, полистать книгу, поговорить.</p></div>
+      <div class="card c-club reveal"><span class="tag">Каждую субботу, 18:00</span><div class="big">сб</div><h3>Разговорный клуб с носителем</h3><p>Живая практика без учебника, а ещё лекции о культуре Португалии, Бразилии и Испании.</p></div>
+      <div class="card c-formats reveal"><span class="tag">Вживую и онлайн</span><h3>Группа, мини-группа, индивидуально, Skype</h3><p>Выбираете темп и способ, преподаватели остаются те же.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- КОНТАКТЫ + ИИ-СЛОТ -->
+<section class="sec" id="contact" style="background:var(--surface-2)">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <span class="eyebrow">Запись и контакты</span>
+      <h2>Приходите на бесплатное пробное занятие</h2>
+      <p>Определим ваш уровень и подберём группу. Спросите что угодно у помощника ниже или свяжитесь напрямую.</p>
+    </div>
+    <div class="contact-grid">
+      <div class="contact-info reveal">
+        <div class="hours-pill"><span class="dot"></span>Открыто сегодня, 10:00&#8211;21:30</div>
+        <dl>
+          <dt>Адрес</dt><dd>Москва, ул. Новослободская, 11</dd>
+          <dt>Телефон</dt><dd><a href="tel:+74950665278">+7 495 066-52-78</a></dd>
+          <dt>Почта</dt><dd><a href="mailto:info@ensina-me.ru">info@ensina-me.ru</a></dd>
+          <dt>Часы работы</dt><dd>Ежедневно, 10:00&#8211;21:30</dd>
+          <dt>Форматы</dt><dd>Группы · мини-группы · индивидуально · онлайн</dd>
+        </dl>
+      </div>
+      <div class="assistant reveal" aria-label="Помощник по записи">
+        <div class="assistant-head"><div class="av">E</div><div><div class="t">Помощник Ensina&#8209;me</div><div class="s">Ответит про наборы, уровни, цены и запись на пробное</div></div></div>
+        <!--
+          Точка монтирования чат-виджета ИИ-ассистента.
+          Заменяет прежнюю форму заявки ChronoForms. Виджет намеренно
+          не реализован в этом макете: оставлено чистое место под встройку.
+        -->
+        <div id="ai-assistant-slot" role="region" aria-live="polite">
+          <div class="ph-icon">💬</div>
+          <div class="ph-t">Здесь появится живой чат с ассистентом</div>
+          <div class="ph-d">Место под встройку виджета вместо старой формы ChronoForms. Монтируется в контейнер <code>#ai-assistant-slot</code>.</div>
+        </div>
+        <div class="assistant-foot">🔒 Пока помощник настраивается, запись доступна по телефону, почте и в Telegram.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ПОДВАЛ -->
+<footer>
+  <div class="wrap">
+    <div class="foot-top">
+      <a href="#home" class="brand"><span class="mark"></span><span>Ensina&#8209;me<small>português · español</small></span></a>
+      <nav>
+        <a href="#languages">Языки и наборы</a>
+        <a href="#teachers">Преподаватели</a>
+        <a href="#reviews">Отзывы</a>
+        <a href="#why">Почему мы</a>
+        <a href="#contact">Контакты</a>
+      </nav>
+    </div>
+    <div class="foot-bot">
+      <span>Языковой центр Ensina&#8209;me. Москва, ул. Новослободская, 11. +7 495 066-52-78. Ежедневно 10:00&#8211;21:30.</span>
+      <span>Только португальский и испанский.</span>
+    </div>
+  </div>
+</footer>
+
+<script>
+  var burger=document.getElementById('burger'),menu=document.getElementById('menu');
+  burger.addEventListener('click',function(){var open=menu.classList.toggle('open');burger.setAttribute('aria-expanded',open);});
+  menu.querySelectorAll('a').forEach(function(a){a.addEventListener('click',function(){menu.classList.remove('open');burger.setAttribute('aria-expanded',false);});});
+
+  var schedules={
+    pt:[
+      {t:'Португальский с нуля',m:'Среда, вечер · новый набор',l:'A1',native:false},
+      {t:'Португальский, продолжающие',m:'Понедельник и среда, вечер',l:'A2–B1',native:false},
+      {t:'Бразильский вариант с носителем',m:'С Рафаэлом · разговорная практика',l:'носитель',native:true},
+      {t:'Разговорный клуб',m:'Каждую субботу, 18:00 · A2 и выше',l:'клуб',native:true}
+    ],
+    es:[
+      {t:'Испанский с нуля',m:'Понедельник, вечер · новый набор',l:'A1',native:false},
+      {t:'Испанский, продолжающие',m:'Вторник и четверг, вечер',l:'A2–B1',native:false},
+      {t:'Разговорная практика с носителем',m:'По договорённости с преподавателем',l:'носитель',native:true},
+      {t:'Индивидуально под цель',m:'Гибкое расписание · онлайн или в центре',l:'любой',native:false}
+    ]
+  };
+  var schedEl=document.getElementById('sched');
+  function renderSched(lang){
+    schedEl.innerHTML=schedules[lang].map(function(r){
+      return '<div class="sched-row'+(r.native?' native':'')+'"><div><h4>'+r.t+'</h4><div class="meta">'+r.m+'</div></div><span class="lvl">'+r.l+'</span></div>';
+    }).join('');
+  }
+  renderSched('pt');
+  document.querySelectorAll('.langtabs button').forEach(function(b){
+    b.addEventListener('click',function(){
+      document.querySelectorAll('.langtabs button').forEach(function(x){x.setAttribute('aria-selected','false');});
+      b.setAttribute('aria-selected','true');renderSched(b.dataset.lang);
+    });
+  });
+
+  var io=new IntersectionObserver(function(entries){entries.forEach(function(e){if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target);}});},{threshold:.12});
+  document.querySelectorAll('.reveal').forEach(function(el){io.observe(el);});
+</script>
+</body>
+</html>

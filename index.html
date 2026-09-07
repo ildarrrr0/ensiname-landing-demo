@@ -3,606 +3,77 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Ensina-me — центр португальского и испанского в Москве</title>
-<meta name="description" content="Единственный в Москве языковой центр, который занимается только португальским и испанским. Маленькие группы, преподаватели-друзья, разговорные клубы с носителями. Новослободская, 11.">
+<title>Ensina-me — макеты лендинга (3 палитры)</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Cormorant:wght@500;600;700&family=Manrope:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant:wght@600;700&family=Manrope:wght@400;500;600;700&display=swap" rel="stylesheet">
 <style>
-  /* ---------- Токены ---------- */
-  :root{
-    --ink:#14243B;        /* глубокий кобальт-чернила */
-    --cobalt:#24547E;     /* синий азулежу */
-    --glaze:#4E86B0;      /* светлая глазурь */
-    --paper:#F3EEE3;      /* тёплый известковый песок */
-    --paper-2:#EDE6D6;    /* песок глубже */
-    --clay:#B4492E;       /* жжёная терракота */
-    --ochre:#DDA04A;      /* золотистая охра */
-    --white:#FBF9F4;
-    --line:rgba(20,36,59,.14);
-
-    --azulejo:
-      url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='84' height='84' viewBox='0 0 84 84'%3E%3Cg fill='none' stroke='%2324547E' stroke-width='1.3'%3E%3Ccircle cx='0' cy='0' r='30'/%3E%3Ccircle cx='84' cy='0' r='30'/%3E%3Ccircle cx='0' cy='84' r='30'/%3E%3Ccircle cx='84' cy='84' r='30'/%3E%3Ccircle cx='42' cy='42' r='30'/%3E%3Crect x='30' y='30' width='24' height='24' transform='rotate(45 42 42)'/%3E%3Ccircle cx='42' cy='42' r='4.5' fill='%2324547E' stroke='none'/%3E%3C/g%3E%3C/svg%3E");
-
-    --azulejo-light:
-      url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='84' height='84' viewBox='0 0 84 84'%3E%3Cg fill='none' stroke='%23FBF9F4' stroke-width='1.1'%3E%3Ccircle cx='0' cy='0' r='30'/%3E%3Ccircle cx='84' cy='0' r='30'/%3E%3Ccircle cx='0' cy='84' r='30'/%3E%3Ccircle cx='84' cy='84' r='30'/%3E%3Ccircle cx='42' cy='42' r='30'/%3E%3Crect x='30' y='30' width='24' height='24' transform='rotate(45 42 42)'/%3E%3Ccircle cx='42' cy='42' r='4' fill='%23FBF9F4' stroke='none'/%3E%3C/g%3E%3C/svg%3E");
-  }
-
   *{box-sizing:border-box;margin:0;padding:0}
-  html{scroll-behavior:smooth;scroll-padding-top:78px}
-  body{
-    font-family:'Manrope',system-ui,sans-serif;
-    background:var(--paper);
-    color:var(--ink);
-    font-size:1.05rem;
-    line-height:1.65;
-    -webkit-font-smoothing:antialiased;
-    overflow-x:hidden;
-  }
-  h1,h2,h3,h4{font-family:'Cormorant',Georgia,serif;font-weight:600;line-height:1.06;letter-spacing:-.01em}
-  h1{font-size:clamp(2.6rem,6vw,4.7rem)}
-  h2{font-size:clamp(2rem,4.2vw,3.1rem)}
-  h3{font-size:clamp(1.35rem,2.4vw,1.75rem);line-height:1.15}
-  p{max-width:62ch}
-  a{color:inherit;text-decoration:none}
-  img{max-width:100%;display:block}
-  .wrap{width:min(1160px,92vw);margin-inline:auto}
-  section{position:relative}
-
-  /* ---------- Кнопки ---------- */
-  .btn{
-    display:inline-flex;align-items:center;gap:.55em;
-    font-weight:600;font-size:1rem;
-    padding:.85em 1.5em;border-radius:2px;
-    border:1.5px solid transparent;cursor:pointer;
-    transition:transform .15s ease,background .2s ease,color .2s ease;
-  }
-  .btn:hover{transform:translateY(-2px)}
-  .btn-primary{background:var(--clay);color:var(--white)}
-  .btn-primary:hover{background:#9c3d25}
-  .btn-ghost{border-color:currentColor;background:transparent}
-  .btn-ghost.on-dark{color:var(--white)}
-  .btn-ghost.on-dark:hover{background:rgba(251,249,244,.1)}
-  .btn-ghost.on-light:hover{background:rgba(20,36,59,.06)}
-
-  /* ---------- Навигация ---------- */
-  header.nav{
-    position:sticky;top:0;z-index:50;
-    background:rgba(243,238,227,.9);
-    backdrop-filter:blur(10px);
-    border-bottom:1px solid var(--line);
-  }
-  .nav-inner{display:flex;align-items:center;justify-content:space-between;height:66px}
-  .brand{display:flex;align-items:center;gap:.6rem;font-family:'Cormorant',serif;font-size:1.7rem;font-weight:700;letter-spacing:-.01em}
-  .brand .mark{
-    width:30px;height:30px;flex:none;border-radius:4px;
-    background:var(--ink) var(--azulejo-light);
-    background-size:30px;
-  }
-  .brand small{font-family:'Manrope',sans-serif;font-size:.62rem;font-weight:600;color:var(--cobalt);letter-spacing:.14em;text-transform:uppercase;line-height:1;margin-top:.15rem}
-  nav.links{display:flex;align-items:center;gap:1.8rem}
-  nav.links a{font-size:.95rem;font-weight:500;color:var(--ink);opacity:.82;transition:opacity .2s}
-  nav.links a:hover{opacity:1;text-decoration:underline;text-decoration-color:var(--ochre);text-underline-offset:5px;text-decoration-thickness:2px}
-  nav.links .btn{padding:.55em 1.15em}
-  .burger{display:none;background:none;border:1.5px solid var(--line);border-radius:3px;width:42px;height:38px;cursor:pointer;flex-direction:column;gap:4px;align-items:center;justify-content:center}
-  .burger span{width:19px;height:2px;background:var(--ink);display:block}
-
-  /* ---------- Хиро ---------- */
-  .hero{
-    background:
-      linear-gradient(180deg,rgba(20,36,59,.82),rgba(16,30,50,.94)),
-      var(--ink) var(--azulejo-light);
-    background-size:auto,168px;
-    background-blend-mode:normal;
-    color:var(--white);
-    padding:clamp(3.5rem,8vw,6.5rem) 0 0;
-    overflow:hidden;
-  }
-  .hero .wrap{position:relative}
-  .hero-flag{
-    display:inline-flex;align-items:center;gap:.7rem;
-    font-size:.82rem;font-weight:600;letter-spacing:.02em;
-    background:rgba(251,249,244,.1);
-    border:1px solid rgba(251,249,244,.22);
-    padding:.5em 1em;border-radius:100px;margin-bottom:1.7rem;
-  }
-  .hero-flag b{color:var(--ochre);font-weight:700}
-  .hero h1{max-width:16ch;margin-bottom:1.4rem}
-  .hero h1 em{font-style:italic;color:var(--ochre);position:relative}
-  .hero .lede{font-size:1.2rem;max-width:52ch;color:rgba(251,249,244,.86);margin-bottom:2.2rem;line-height:1.55}
-  .hero-cta{display:flex;flex-wrap:wrap;gap:.9rem;margin-bottom:3rem}
-  .hero-facts{
-    display:flex;flex-wrap:wrap;gap:2.4rem;
-    padding:1.6rem 0 3.4rem;
-    border-top:1px solid rgba(251,249,244,.16);
-  }
-  .fact .k{font-family:'Cormorant',serif;font-size:2.3rem;font-weight:700;color:var(--white);line-height:1}
-  .fact .v{font-size:.9rem;color:rgba(251,249,244,.7);margin-top:.25rem}
-  /* азулежу-лента снизу хиро */
-  .tile-strip{height:26px;background:var(--ink) var(--azulejo);background-size:26px;opacity:1}
-
-  /* ---------- Общее для секций ---------- */
-  .sec{padding:clamp(3.8rem,7vw,6rem) 0}
-  .eyebrow{display:inline-flex;align-items:center;gap:.6rem;font-size:.9rem;font-weight:600;color:var(--cobalt);margin-bottom:.9rem}
-  .eyebrow::before{content:"";width:20px;height:20px;background:var(--azulejo);background-size:20px;border-radius:3px;flex:none;box-shadow:inset 0 0 0 1px var(--line)}
-  .sec-head{max-width:60ch;margin-bottom:2.6rem}
-  .sec-head p{margin-top:.9rem;color:rgba(20,36,59,.75)}
-
-  /* ---------- Языки и форматы ---------- */
-  .langtabs{display:inline-flex;background:var(--paper-2);border:1px solid var(--line);border-radius:4px;padding:4px;margin-bottom:2rem;gap:4px}
-  .langtabs button{
-    font-family:inherit;font-size:.98rem;font-weight:600;color:var(--ink);
-    background:none;border:none;cursor:pointer;padding:.55em 1.3em;border-radius:2px;transition:.2s;
-  }
-  .langtabs button[aria-selected="true"]{background:var(--cobalt);color:var(--white)}
-
-  .lang-grid{display:grid;grid-template-columns:1.1fr .9fr;gap:2.4rem;align-items:start}
-  .sched{display:flex;flex-direction:column;gap:.7rem}
-  .sched-row{
-    display:grid;grid-template-columns:1fr auto;gap:1rem;align-items:center;
-    background:var(--white);border:1px solid var(--line);border-left:4px solid var(--cobalt);
-    padding:1.05rem 1.3rem;border-radius:3px;
-  }
-  .sched-row.native{border-left-color:var(--clay)}
-  .sched-row h4{font-family:'Manrope',sans-serif;font-size:1.06rem;font-weight:700;margin-bottom:.15rem}
-  .sched-row .meta{font-size:.88rem;color:rgba(20,36,59,.62)}
-  .sched-row .lvl{font-size:.78rem;font-weight:700;color:var(--cobalt);white-space:nowrap;background:rgba(36,84,126,.1);padding:.35em .7em;border-radius:100px}
-  .sched-row.native .lvl{color:var(--clay);background:rgba(180,73,46,.1)}
-
-  .formats{display:grid;gap:1rem}
-  .fmt{background:var(--paper-2);border:1px solid var(--line);padding:1.1rem 1.25rem;border-radius:3px}
-  .fmt h4{font-family:'Manrope',sans-serif;font-size:1rem;font-weight:700}
-  .fmt p{font-size:.9rem;color:rgba(20,36,59,.7);margin-top:.2rem}
-  .fmt.accent{background:var(--ink) var(--azulejo-light);background-size:60px;color:var(--white);position:relative}
-  .fmt.accent::after{content:"";position:absolute;inset:0;background:rgba(20,36,59,.86)}
-  .fmt.accent h4,.fmt.accent p{position:relative;z-index:1}
-  .fmt.accent p{color:rgba(251,249,244,.78)}
-
-  /* ---------- Преподаватели ---------- */
-  .teachers{display:grid;grid-template-columns:1fr 1fr;gap:2rem}
-  .teacher{background:var(--white);border:1px solid var(--line);border-radius:5px;overflow:hidden;display:flex;flex-direction:column}
-  .teacher .photo{
-    aspect-ratio:16/10;display:flex;align-items:flex-end;padding:1.2rem;
-    position:relative;color:var(--white);
-  }
-  .teacher.pt .photo{background:linear-gradient(140deg,#1D3A5C,#24547E)}
-  .teacher.es .photo{background:linear-gradient(140deg,#8a3a24,#B4492E)}
-  .teacher .photo::before{content:"";position:absolute;inset:0;background:var(--azulejo-light);background-size:70px;opacity:.16}
-  .teacher .photo .who{position:relative;z-index:1}
-  .teacher .photo .who .lang{font-size:.78rem;font-weight:700;letter-spacing:.05em;text-transform:uppercase;opacity:.85}
-  .teacher .photo .who .name{font-family:'Cormorant',serif;font-size:2.6rem;font-weight:700;line-height:1}
-  .teacher .body{padding:1.5rem 1.5rem 1.7rem}
-  .teacher .body p{font-size:.96rem;color:rgba(20,36,59,.8)}
-  .margin-note{
-    margin-top:1.1rem;padding-left:1rem;border-left:2px solid var(--ochre);
-    font-family:'Cormorant',serif;font-style:italic;font-size:1.22rem;color:var(--clay);line-height:1.3;
-  }
-
-  /* ---------- Отзывы ---------- */
-  .reviews{background:var(--ink) var(--azulejo-light);background-size:150px;color:var(--white)}
-  .reviews::before{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(16,30,50,.93),rgba(20,36,59,.97))}
-  .reviews>.wrap{position:relative;z-index:1}
-  .reviews .eyebrow{color:var(--ochre)}
-  .reviews .eyebrow::before{background:var(--azulejo-light);background-size:20px;box-shadow:inset 0 0 0 1px rgba(251,249,244,.25)}
-  .reviews .sec-head h2{color:var(--white)}
-  .rev-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1.5rem;margin-top:.5rem}
-  .rev{background:rgba(251,249,244,.055);border:1px solid rgba(251,249,244,.14);border-radius:5px;padding:1.7rem}
-  .rev.feature{grid-column:span 2;background:rgba(221,160,74,.1);border-color:rgba(221,160,74,.35)}
-  .stars{color:var(--ochre);letter-spacing:.15em;font-size:.9rem;margin-bottom:.9rem}
-  .rev blockquote{font-family:'Cormorant',serif;font-size:1.42rem;line-height:1.32;color:var(--white)}
-  .rev.feature blockquote{font-size:1.65rem}
-  .rev .who{margin-top:1.2rem;font-size:.88rem;color:rgba(251,249,244,.68)}
-  .rev .who b{color:var(--white);font-weight:700}
-  .rtp{display:inline-block;margin-top:.8rem;font-size:.75rem;font-weight:700;letter-spacing:.08em;color:var(--ink);background:var(--ochre);padding:.35em .7em;border-radius:3px}
-
-  /* ---------- Атмосфера ---------- */
-  .atmo-grid{display:grid;grid-template-columns:repeat(6,1fr);grid-auto-rows:minmax(150px,auto);gap:1.2rem}
-  .card{border:1px solid var(--line);border-radius:5px;padding:1.5rem;display:flex;flex-direction:column;justify-content:flex-end;background:var(--white)}
-  .card h3{margin-bottom:.4rem}
-  .card p{font-size:.94rem;color:rgba(20,36,59,.74)}
-  .card .tag{font-size:.78rem;font-weight:700;letter-spacing:.05em;text-transform:uppercase;color:var(--cobalt);margin-bottom:.7rem}
-  .c-groups{grid-column:span 3;background:var(--paper-2)}
-  .c-shop{grid-column:span 3;background:linear-gradient(150deg,#1D3A5C,#14243B);color:var(--white)}
-  .c-shop .tag{color:var(--ochre)}
-  .c-shop p{color:rgba(251,249,244,.8)}
-  .c-shop .pubs{display:flex;flex-wrap:wrap;gap:.5rem;margin-top:1rem}
-  .c-shop .pubs span{font-size:.8rem;font-weight:600;border:1px solid rgba(251,249,244,.3);padding:.3em .7em;border-radius:100px}
-  .c-coffee{grid-column:span 2}
-  .c-clubs{grid-column:span 2;background:var(--paper-2)}
-  .c-lib{grid-column:span 2;background:var(--white)}
-  .card .big{font-family:'Cormorant',serif;font-size:2.6rem;font-weight:700;line-height:1;color:var(--clay)}
-
-  /* ---------- Контакты + ИИ-слот ---------- */
-  .contact-grid{display:grid;grid-template-columns:.85fr 1.15fr;gap:2.6rem;align-items:start}
-  .contact-info dl{margin-top:1.6rem}
-  .contact-info dt{font-size:.8rem;font-weight:700;letter-spacing:.05em;text-transform:uppercase;color:var(--cobalt);margin-top:1.3rem}
-  .contact-info dd{font-size:1.12rem;font-weight:500;margin-top:.15rem}
-  .contact-info dd a:hover{text-decoration:underline;text-underline-offset:4px}
-  .hours-pill{display:inline-flex;align-items:center;gap:.5rem;margin-top:1.6rem;background:var(--paper-2);border:1px solid var(--line);padding:.6em 1em;border-radius:100px;font-size:.9rem;font-weight:600}
-  .hours-pill .dot{width:9px;height:9px;border-radius:50%;background:#3fa46a;box-shadow:0 0 0 3px rgba(63,164,106,.2)}
-
-  /* Чистое место под живого ИИ-ассистента (замена старых chronoforms) */
-  .assistant{
-    background:var(--white);
-    border:1.5px solid var(--cobalt);
-    border-radius:6px;
-    overflow:hidden;
-    box-shadow:0 18px 40px -24px rgba(20,36,59,.5);
-  }
-  .assistant-head{
-    background:var(--ink) var(--azulejo-light);background-size:44px;
-    color:var(--white);padding:1.2rem 1.5rem;position:relative;
-    display:flex;align-items:center;gap:.9rem;
-  }
-  .assistant-head::before{content:"";position:absolute;inset:0;background:rgba(20,36,59,.84)}
-  .assistant-head>*{position:relative;z-index:1}
-  .assistant-head .av{width:40px;height:40px;border-radius:50%;background:var(--ochre);color:var(--ink);display:grid;place-items:center;font-family:'Cormorant',serif;font-size:1.5rem;font-weight:700;flex:none}
-  .assistant-head .t{font-weight:700;font-size:1.02rem}
-  .assistant-head .s{font-size:.82rem;color:rgba(251,249,244,.72)}
-  /* пустой контейнер-точка монтирования виджета — сюда встраивается бот */
-  #ai-assistant-slot{
-    min-height:300px;
-    display:flex;flex-direction:column;align-items:center;justify-content:center;
-    text-align:center;gap:.8rem;padding:2.5rem 2rem;
-    background:
-      repeating-linear-gradient(-45deg,transparent 0 12px,rgba(36,84,126,.03) 12px 24px);
-  }
-  #ai-assistant-slot .ph-icon{width:52px;height:52px;border-radius:12px;background:var(--paper-2);border:1px solid var(--line);display:grid;place-items:center;font-size:1.6rem}
-  #ai-assistant-slot .ph-t{font-weight:700}
-  #ai-assistant-slot .ph-d{font-size:.9rem;color:rgba(20,36,59,.6);max-width:34ch}
-  #ai-assistant-slot code{font-size:.8rem;background:var(--paper-2);padding:.15em .5em;border-radius:3px;color:var(--cobalt)}
-  .assistant-foot{border-top:1px solid var(--line);padding:.9rem 1.5rem;font-size:.84rem;color:rgba(20,36,59,.6);display:flex;align-items:center;gap:.5rem;flex-wrap:wrap}
-
-  /* ---------- Подвал ---------- */
-  footer{background:var(--ink);color:rgba(251,249,244,.72);padding:3rem 0 2rem}
-  footer .foot-top{display:flex;justify-content:space-between;flex-wrap:wrap;gap:2rem;padding-bottom:2rem;border-bottom:1px solid rgba(251,249,244,.14)}
-  footer .brand{color:var(--white)}
-  footer .brand small{color:var(--glaze)}
-  footer nav{display:flex;gap:1.5rem;flex-wrap:wrap}
-  footer nav a{font-size:.92rem;transition:color .2s}
-  footer nav a:hover{color:var(--ochre)}
-  footer .foot-bot{padding-top:1.5rem;font-size:.82rem;display:flex;justify-content:space-between;flex-wrap:wrap;gap:1rem;color:rgba(251,249,244,.5)}
-
-  /* ---------- Reveal ---------- */
-  .reveal{opacity:0;transform:translateY(22px);transition:opacity .7s ease,transform .7s ease}
-  .reveal.in{opacity:1;transform:none}
-  @media(prefers-reduced-motion:reduce){.reveal{opacity:1;transform:none;transition:none}.btn:hover{transform:none}}
-
-  /* ---------- Адаптив ---------- */
-  @media(max-width:900px){
-    .lang-grid,.contact-grid{grid-template-columns:1fr}
-    .teachers{grid-template-columns:1fr}
-    .rev-grid{grid-template-columns:1fr 1fr}
-    .rev.feature{grid-column:span 2}
-    .atmo-grid{grid-template-columns:repeat(2,1fr)}
-    .c-groups,.c-shop,.c-coffee,.c-clubs,.c-lib{grid-column:span 2}
-  }
-  @media(max-width:720px){
-    nav.links{
-      position:fixed;inset:66px 0 auto 0;flex-direction:column;align-items:stretch;
-      background:var(--paper);border-bottom:1px solid var(--line);
-      padding:1rem 6vw 1.5rem;gap:.4rem;
-      transform:translateY(-120%);transition:transform .3s ease;box-shadow:0 20px 30px -20px rgba(0,0,0,.3);
-    }
-    nav.links.open{transform:none}
-    nav.links a{padding:.7rem 0;border-bottom:1px solid var(--line)}
-    nav.links .btn{margin-top:.6rem;justify-content:center}
-    .burger{display:flex}
-    .rev-grid{grid-template-columns:1fr}
-    .rev.feature{grid-column:span 1;font-size:inherit}
-    .hero-facts{gap:1.6rem 2rem}
-    p{max-width:none}
-  }
+  body{font-family:'Manrope',system-ui,sans-serif;background:#14201c;color:#EAF1EC;line-height:1.6;min-height:100vh;
+    background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='84' height='84' viewBox='0 0 84 84'%3E%3Cg fill='none' stroke='%23223a32' stroke-width='1.2'%3E%3Ccircle cx='0' cy='0' r='30'/%3E%3Ccircle cx='84' cy='0' r='30'/%3E%3Ccircle cx='0' cy='84' r='30'/%3E%3Ccircle cx='84' cy='84' r='30'/%3E%3Ccircle cx='42' cy='42' r='30'/%3E%3Crect x='30' y='30' width='24' height='24' transform='rotate(45 42 42)'/%3E%3C/g%3E%3C/svg%3E");
+    background-size:120px}
+  .wrap{width:min(980px,92vw);margin-inline:auto;padding:clamp(3rem,8vw,6rem) 0}
+  h1{font-family:'Cormorant',serif;font-size:clamp(2.4rem,6vw,4rem);font-weight:700;line-height:1.05;margin-bottom:.6rem}
+  .lede{color:#9DB0A6;max-width:60ch;margin-bottom:2.8rem;font-size:1.08rem}
+  .grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1.4rem}
+  .card{display:flex;flex-direction:column;background:#1B2c26;border:1px solid rgba(234,241,236,.12);border-radius:8px;overflow:hidden;text-decoration:none;color:inherit;transition:transform .18s ease,border-color .2s}
+  .card:hover{transform:translateY(-4px);border-color:rgba(234,241,236,.28)}
+  .swatch{height:120px;display:flex}
+  .swatch span{flex:1}
+  .body{padding:1.2rem 1.3rem 1.5rem}
+  .kicker{font-size:.76rem;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:#7FB09A;margin-bottom:.35rem}
+  .name{font-family:'Cormorant',serif;font-size:1.7rem;font-weight:700;line-height:1.1;margin-bottom:.5rem}
+  .desc{font-size:.92rem;color:#9DB0A6;margin-bottom:1rem}
+  .hexes{display:flex;flex-wrap:wrap;gap:.35rem;font-size:.7rem;color:#8ea296;font-family:ui-monospace,monospace}
+  .hexes span{border:1px solid rgba(234,241,236,.14);padding:.15em .45em;border-radius:100px}
+  .go{margin-top:1.1rem;font-weight:700;font-size:.92rem;color:#F2B33D}
+  .card:hover .go{text-decoration:underline;text-underline-offset:4px}
+  .note{margin-top:2.6rem;font-size:.86rem;color:#7f9088;max-width:70ch}
+  .note code{background:#1B2c26;padding:.12em .45em;border-radius:3px;color:#7FB09A}
+  @media(max-width:760px){.grid{grid-template-columns:1fr}}
 </style>
 </head>
 <body>
+<div class="wrap">
+  <h1>Ensina&#8209;me · три палитры одного лендинга</h1>
+  <p class="lede">Один и тот же макет и реальный контент центра португальского и испанского. Структура и вёрстка идентичны, меняется только цветовое решение. Откройте любой вариант, чтобы сравнить.</p>
 
-<!-- ================= НАВИГАЦИЯ ================= -->
-<header class="nav">
-  <div class="wrap nav-inner">
-    <a href="#home" class="brand">
-      <span class="mark"></span>
-      <span>Ensina&#8209;me<br><small>português · español</small></span>
+  <div class="grid">
+    <a class="card" href="version-a.html">
+      <div class="swatch"><span style="background:#16324F"></span><span style="background:#1F4E79"></span><span style="background:#3E7CB1"></span><span style="background:#C15B3C"></span><span style="background:#E0A24C"></span></div>
+      <div class="body">
+        <div class="kicker">Вариант A</div>
+        <div class="name">Азулежу</div>
+        <div class="desc">Кобальтово-синяя керамика плитки, тёплый терракотовый акцент. Классика Португалии.</div>
+        <div class="hexes"><span>#16324F</span><span>#1F4E79</span><span>#C15B3C</span><span>#E0A24C</span></div>
+        <div class="go">Открыть вариант A →</div>
+      </div>
     </a>
-    <button class="burger" id="burger" aria-label="Меню" aria-expanded="false">
-      <span></span><span></span><span></span>
-    </button>
-    <nav class="links" id="menu">
-      <a href="#languages">Языки и форматы</a>
-      <a href="#teachers">Преподаватели</a>
-      <a href="#reviews">Отзывы</a>
-      <a href="#atmosphere">Атмосфера</a>
-      <a href="#contact" class="btn btn-primary">Пробное занятие</a>
-    </nav>
+
+    <a class="card" href="version-b.html">
+      <div class="swatch"><span style="background:#5E1622"></span><span style="background:#7B1E2B"></span><span style="background:#A8324A"></span><span style="background:#C88A2E"></span><span style="background:#6E7B4B"></span></div>
+      <div class="body">
+        <div class="kicker">Вариант B</div>
+        <div class="name">Средиземноморье</div>
+        <div class="desc">Песок и охра, глубокое винно-бордовое, приглушённая олива. Тёплый юг Европы.</div>
+        <div class="hexes"><span>#F4EDE0</span><span>#7B1E2B</span><span>#C88A2E</span><span>#6E7B4B</span></div>
+        <div class="go">Открыть вариант B →</div>
+      </div>
+    </a>
+
+    <a class="card" href="version-c.html">
+      <div class="swatch"><span style="background:#132621"></span><span style="background:#1B342C"></span><span style="background:#7FB09A"></span><span style="background:#F2B33D"></span><span style="background:#EAF1EC"></span></div>
+      <div class="body">
+        <div class="kicker">Вариант C</div>
+        <div class="name">Тёмный минимал</div>
+        <div class="desc">Глубокая хвоя как основа, шафрановый яркий акцент, шалфейный полутон. Современно и спокойно.</div>
+        <div class="hexes"><span>#132621</span><span>#F2B33D</span><span>#7FB09A</span><span>#EAF1EC</span></div>
+        <div class="go">Открыть вариант C →</div>
+      </div>
+    </a>
   </div>
-</header>
 
-<!-- ================= ХИРО ================= -->
-<section class="hero" id="home">
-  <div class="wrap">
-    <span class="hero-flag">🇵🇹🇧🇷🇪🇸 &nbsp;<b>Единственный</b> центр в Москве только по этим двум языкам</span>
-    <h1>Португальский и испанский, <em>и больше ничего лишнего</em></h1>
-    <p class="lede">Мы не распыляемся на десяток языков. Уже много лет в Ensina&#8209;me учат только португальскому и испанскому, а значит глубоко: от алфавита до перевода экскурсий и интервью на португальском телевидении.</p>
-    <div class="hero-cta">
-      <a href="#contact" class="btn btn-primary">Записаться на бесплатное занятие</a>
-      <a href="#languages" class="btn btn-ghost on-dark">Посмотреть наборы</a>
-    </div>
-    <div class="hero-facts">
-      <div class="fact"><div class="k">до 6</div><div class="v">человек в группе</div></div>
-      <div class="fact"><div class="k">2</div><div class="v">языка, оба с носителями</div></div>
-      <div class="fact"><div class="k">4</div><div class="v">формата обучения</div></div>
-      <div class="fact"><div class="k">10:00&#8211;21:30</div><div class="v">Новослободская, 11</div></div>
-    </div>
-  </div>
-</section>
-<div class="tile-strip" aria-hidden="true"></div>
-
-<!-- ================= ЯЗЫКИ И ФОРМАТЫ ================= -->
-<section class="sec" id="languages">
-  <div class="wrap">
-    <div class="sec-head reveal">
-      <span class="eyebrow">Языки и наборы</span>
-      <h2>Актуальные группы на этот сезон</h2>
-      <p>Небольшие группы стартуют регулярно. Переключите язык, чтобы увидеть, куда ещё можно присоединиться.</p>
-    </div>
-
-    <div class="langtabs reveal" role="tablist" aria-label="Выбор языка">
-      <button role="tab" aria-selected="true" data-lang="pt">Португальский</button>
-      <button role="tab" aria-selected="false" data-lang="es">Испанский</button>
-    </div>
-
-    <div class="lang-grid">
-      <!-- Расписание -->
-      <div class="sched reveal" id="sched"><!-- заполняется JS --></div>
-
-      <!-- Форматы -->
-      <div class="formats reveal">
-        <div class="fmt accent">
-          <h4>Мини-группа до 6 человек</h4>
-          <p>Наш любимый формат. Все успевают говорить, преподаватель помнит, кто на чём споткнулся на прошлой неделе.</p>
-        </div>
-        <div class="fmt">
-          <h4>Группа</h4>
-          <p>Классический набор с нуля и по уровням, живой темп и партнёры по диалогам.</p>
-        </div>
-        <div class="fmt">
-          <h4>Индивидуально</h4>
-          <p>Программа под вашу цель: работа, переезд, экзамен или путешествие.</p>
-        </div>
-        <div class="fmt">
-          <h4>Дистанционно</h4>
-          <p>Те же преподаватели онлайн, если вы не в Москве или в разъездах.</p>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- ================= ПРЕПОДАВАТЕЛИ ================= -->
-<section class="sec" id="teachers" style="background:var(--paper-2)">
-  <div class="wrap">
-    <div class="sec-head reveal">
-      <span class="eyebrow">Кто вас учит</span>
-      <h2>Преподаватели, которых студенты вспоминают как друзей</h2>
-      <p>В отзывах их зовут по именам и с теплотой. Это не «команда экспертов» с одинаковыми улыбками, а живые люди со своим стилем.</p>
-    </div>
-    <div class="teachers">
-      <article class="teacher pt reveal">
-        <div class="photo">
-          <div class="who"><div class="lang">Португальский</div><div class="name">Дерио</div></div>
-        </div>
-        <div class="body">
-          <p>Ведёт от первого «olá» до свободной речи. Объясняет спокойно и по делу, любит разбирать, чем европейский португальский отличается от бразильского, и подкидывает песни и новости, чтобы язык звучал живьём, а не только в учебнике.</p>
-          <p class="margin-note">«С ним не страшно ошибаться: поправит так, что запомнишь навсегда.»</p>
-        </div>
-      </article>
-      <article class="teacher es reveal">
-        <div class="photo">
-          <div class="who"><div class="lang">Испанский</div><div class="name">Никсар</div></div>
-        </div>
-        <div class="body">
-          <p>Заряжает темпом и разговором с первого занятия. У него быстро пропадает страх говорить: много практики, реальные ситуации и та самая южная лёгкость, ради которой люди и берутся за испанский.</p>
-          <p class="margin-note">«Приходишь на урок как в гости, а уходишь уже с новыми фразами.»</p>
-        </div>
-      </article>
-    </div>
-  </div>
-</section>
-
-<!-- ================= ОТЗЫВЫ ================= -->
-<section class="sec reviews" id="reviews">
-  <div class="wrap">
-    <div class="sec-head reveal">
-      <span class="eyebrow">Отзывы студентов</span>
-      <h2>От первого урока до эфира на RTP</h2>
-    </div>
-    <div class="rev-grid">
-      <div class="rev feature reveal">
-        <div class="stars">★★★★★</div>
-        <blockquote>За два года дошла до того, что свободно переводила экскурсии в Португалии, а потом дала интервью местному телевидению на португальском. Начинала здесь с полного нуля.</blockquote>
-        <div class="who"><b>Мария</b>, португальский<span class="rtp">интервью на RTP</span></div>
-      </div>
-      <div class="rev reveal">
-        <div class="stars">★★★★★</div>
-        <blockquote>Маленькая группа, все свои, к концу семестра уже болтаем на кофе-паузах.</blockquote>
-        <div class="who"><b>Антон</b>, испанский</div>
-      </div>
-      <div class="rev reveal">
-        <div class="stars">★★★★★</div>
-        <blockquote>Ходила ради путешествий, осталась ради атмосферы и Дерио. Теперь читаю книги в оригинале.</blockquote>
-        <div class="who"><b>Елена</b>, португальский</div>
-      </div>
-      <div class="rev reveal">
-        <div class="stars">★★★★★</div>
-        <blockquote>Разговорный клуб с носителем по субботам сделал больше, чем год самоучителей.</blockquote>
-        <div class="who"><b>Дмитрий</b>, испанский</div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- ================= АТМОСФЕРА ================= -->
-<section class="sec" id="atmosphere">
-  <div class="wrap">
-    <div class="sec-head reveal">
-      <span class="eyebrow">Атмосфера центра</span>
-      <h2>Здесь по-домашнему, а не по-корпоративному</h2>
-      <p>Маленькие группы, кофе, книги на португальском на полках и своя редкая деталь: собственный магазин учебников, привезённых из Португалии и Бразилии.</p>
-    </div>
-    <div class="atmo-grid">
-      <div class="card c-groups reveal">
-        <span class="tag">Маленькие группы</span>
-        <h3>До 6 человек, и каждого слышно</h3>
-        <p>Преподаватель помнит ваш прогресс лично. Никто не отсиживается в углу, говорят все.</p>
-      </div>
-      <div class="card c-shop reveal">
-        <span class="tag">Свой книжный</span>
-        <h3>Магазин учебников из Португалии и Бразилии</h3>
-        <p>Редкость для Москвы: оригинальные пособия, которые сложно достать где-то ещё.</p>
-        <div class="pubs"><span>Lidel</span><span>Porto Editora</span><span>EPU</span></div>
-      </div>
-      <div class="card c-coffee reveal">
-        <span class="tag">Библиотека</span>
-        <h3>Кофе и книги на португальском</h3>
-        <p>Можно остаться после урока, полистать книгу, поговорить.</p>
-      </div>
-      <div class="card c-clubs reveal">
-        <span class="tag">Каждую субботу</span>
-        <div class="big">сб</div>
-        <h3>Разговорные клубы с носителями</h3>
-        <p>А ещё киноклуб и лекции о культуре Португалии, Бразилии и Испании.</p>
-      </div>
-      <div class="card c-lib reveal">
-        <span class="tag">Форматы вживую и онлайн</span>
-        <h3>Группа, мини-группа, индивидуально, дистанционно</h3>
-        <p>Выбираете темп и способ, преподаватели остаются те же.</p>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- ================= КОНТАКТЫ + ИИ-СЛОТ ================= -->
-<section class="sec" id="contact" style="background:var(--paper-2)">
-  <div class="wrap">
-    <div class="sec-head reveal">
-      <span class="eyebrow">Запись и контакты</span>
-      <h2>Приходите на бесплатное пробное занятие</h2>
-      <p>Определим ваш уровень и подберём группу. Спросите что угодно у нашего помощника ниже.</p>
-    </div>
-    <div class="contact-grid">
-      <!-- Контактная информация -->
-      <div class="contact-info reveal">
-        <div class="hours-pill"><span class="dot"></span>Открыто сегодня, 10:00&#8211;21:30</div>
-        <dl>
-          <dt>Адрес</dt>
-          <dd>Москва, ул. Новослободская, 11</dd>
-          <dt>Часы работы</dt>
-          <dd>Ежедневно, 10:00&#8211;21:30</dd>
-          <dt>Телефон</dt>
-          <dd><a href="tel:+70000000000">записаться по телефону</a></dd>
-          <dt>Форматы</dt>
-          <dd>Группы · мини-группы · индивидуально · онлайн</dd>
-        </dl>
-      </div>
-
-      <!-- ЧИСТОЕ МЕСТО ПОД ЖИВОГО ИИ-АССИСТЕНТА (заменяет старую форму chronoforms) -->
-      <div class="assistant reveal" aria-label="Помощник по записи">
-        <div class="assistant-head">
-          <div class="av">E</div>
-          <div>
-            <div class="t">Помощник Ensina&#8209;me</div>
-            <div class="s">Ответит про наборы, уровни и запись на пробное</div>
-          </div>
-        </div>
-        <!--
-          Точка монтирования чат-виджета ИИ-ассистента.
-          Сюда подключается бот вместо прежней формы заявки (chronoforms).
-          Виджет намеренно не реализован в этом макете, оставлено чистое место.
-        -->
-        <div id="ai-assistant-slot" role="region" aria-live="polite">
-          <div class="ph-icon">💬</div>
-          <div class="ph-t">Здесь появится живой чат с ассистентом</div>
-          <div class="ph-d">Место под встройку виджета: он придёт на смену старой форме заявки. Монтируется в контейнер <code>#ai-assistant-slot</code>.</div>
-        </div>
-        <div class="assistant-foot">
-          🔒 Пока помощник настраивается, запись доступна по телефону и на пробном занятии в центре.
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- ================= ПОДВАЛ ================= -->
-<footer>
-  <div class="wrap">
-    <div class="foot-top">
-      <a href="#home" class="brand" style="color:var(--white)">
-        <span class="mark"></span>
-        <span>Ensina&#8209;me<br><small>português · español</small></span>
-      </a>
-      <nav>
-        <a href="#languages">Языки и форматы</a>
-        <a href="#teachers">Преподаватели</a>
-        <a href="#reviews">Отзывы</a>
-        <a href="#atmosphere">Атмосфера</a>
-        <a href="#contact">Контакты</a>
-      </nav>
-    </div>
-    <div class="foot-bot">
-      <span>Языковой центр Ensina&#8209;me. Москва, ул. Новослободская, 11. Ежедневно 10:00&#8211;21:30.</span>
-      <span>Только португальский и испанский, с 20хх года.</span>
-    </div>
-  </div>
-</footer>
-
-<script>
-  /* ----- Мобильное меню ----- */
-  var burger=document.getElementById('burger'),menu=document.getElementById('menu');
-  burger.addEventListener('click',function(){
-    var open=menu.classList.toggle('open');
-    burger.setAttribute('aria-expanded',open);
-  });
-  menu.querySelectorAll('a').forEach(function(a){
-    a.addEventListener('click',function(){menu.classList.remove('open');burger.setAttribute('aria-expanded',false);});
-  });
-
-  /* ----- Расписание наборов по языкам (реальные направления сайта) ----- */
-  var schedules={
-    pt:[
-      {t:'Португальский с нуля',m:'Вторник и четверг, вечер · старт этого месяца',l:'A1',native:false},
-      {t:'Португальский, продолжающие',m:'Понедельник и среда, вечер',l:'A2–B1',native:false},
-      {t:'Бразильский вариант с носителем',m:'Суббота, день · разговорная практика',l:'носитель',native:true},
-      {t:'Разговорный клуб',m:'Каждую субботу · для уровня A2 и выше',l:'клуб',native:true}
-    ],
-    es:[
-      {t:'Испанский с нуля',m:'Понедельник и среда, вечер · новый набор',l:'A1',native:false},
-      {t:'Испанский, продолжающие',m:'Вторник и четверг, вечер',l:'A2–B1',native:false},
-      {t:'Разговорная практика с носителем',m:'Суббота, день',l:'носитель',native:true},
-      {t:'Индивидуально под цель',m:'Гибкое расписание · онлайн или в центре',l:'любой',native:false}
-    ]
-  };
-  var schedEl=document.getElementById('sched');
-  function renderSched(lang){
-    schedEl.innerHTML=schedules[lang].map(function(r){
-      return '<div class="sched-row'+(r.native?' native':'')+'">'+
-        '<div><h4>'+r.t+'</h4><div class="meta">'+r.m+'</div></div>'+
-        '<span class="lvl">'+r.l+'</span></div>';
-    }).join('');
-  }
-  renderSched('pt');
-  document.querySelectorAll('.langtabs button').forEach(function(b){
-    b.addEventListener('click',function(){
-      document.querySelectorAll('.langtabs button').forEach(function(x){x.setAttribute('aria-selected','false');});
-      b.setAttribute('aria-selected','true');
-      renderSched(b.dataset.lang);
-    });
-  });
-
-  /* ----- Reveal при скролле ----- */
-  var io=new IntersectionObserver(function(entries){
-    entries.forEach(function(e){if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target);}});
-  },{threshold:.12});
-  document.querySelectorAll('.reveal').forEach(function(el){io.observe(el);});
-</script>
+  <p class="note">Контент собран с реального сайта и открытых источников: преподаватели Дерио, Никсар и Рафаэл, форматы обучения, цены, наборы, отзывы и контакты (Новослободская 11, +7 495 066-52-78, 10:00–21:30). В секции контактов каждого варианта оставлено чистое место под живого ИИ-ассистента (<code>#ai-assistant-slot</code>) вместо старой формы ChronoForms.</p>
+</div>
 </body>
 </html>
